@@ -12,7 +12,9 @@ if (!!process.env.S3_ACCESS_KEY_ID) {
     'ghost-s3': {
       accessKeyId:     process.env.S3_ACCESS_KEY_ID,
       secretAccessKey: process.env.S3_ACCESS_SECRET_KEY,
-      bucket:          process.env.S3_BUCKET_NAME
+      bucket:          process.env.S3_BUCKET_NAME,
+      region:          process.env.S3_BUCKET_REGION,
+      assetHost:       process.env.S3_ASSET_HOST_URL
     }
   }
 } else {
@@ -27,12 +29,11 @@ config = {
     url: process.env.HEROKU_URL,
     mail: {
       transport: 'SMTP',
-      host: 'smtp.mandrillapp.com',
       options: {
-        service: 'Mandrill',
+        service: 'Mailgun',
         auth: {
-          user: process.env.MANDRILL_USERNAME,
-          pass: process.env.MANDRILL_APIKEY
+          user: process.env.MAILGUN_SMTP_LOGIN,
+          pass: process.env.MAILGUN_SMTP_PASSWORD
         }
       }
     },
